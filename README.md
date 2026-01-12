@@ -1,10 +1,9 @@
-## 🤖 Assistant
 
-Of course! Here is a very simple and clear English version of the `README.md` file, focusing on the essential steps to get the project running.
+
 
 ---
 
-# HYG-mol: Explainable Molecular Property Prediction
+# HYG-mol
 
 This project uses a deep learning model called an **Attention Hypergraph Network** to predict properties of molecules (like toxicity or solubility).
 
