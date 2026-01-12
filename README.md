@@ -71,5 +71,5 @@ python src/main.py \
 ```
 
 * This command trains the `attention` model on the `bace` dataset for 50 epochs.
-* Results, including the best model (`.pt` file) and performance plots, will be saved to a new folder inside the `results/` directory.
+
 
