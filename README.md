@@ -52,5 +52,5 @@ python -m src.main --dataset BBBP --task_type classification --model_type attent
 ### Supported Datasets
 The framework currently supports:
 - **Classification**: BBBP, BACE, ClinTox, Tox21, SIDER, ToxCast.
-- **Regression**: ESOL, FreeSolv, Lipophilicity, QM8, QM9.
+- **Regression**: ESOL, FreeSolv, Lipophilicity, QM7, QM8.
 
