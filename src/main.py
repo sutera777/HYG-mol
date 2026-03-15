@@ -25,7 +25,7 @@ def main():
     parser.add_argument('--seed', type=int, default=42, help="Random seed.")
     parser.add_argument('--dataset', type=str, required=True,
                         choices=['bace', 'BBBP', 'sider', 'clintox', 'tox21', 'toxcast', 'esol', 'FreeSolv',
-                                 'Lipophilicity', 'qm8', 'qm9'],
+                                 'Lipophilicity', 'qm7', 'qm8'],
                         help="Name of the dataset to use.")
     parser.add_argument('--batch_size', type=int, default=32, help="Batch size for training and evaluation.")
     parser.add_argument('--epochs', type=int, default=100, help="Maximum number of training epochs.")
