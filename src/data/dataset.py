@@ -1406,28 +1406,32 @@ class MoleculeDataset(Dataset):
         print(f"Mean values: {np.mean(self.labels, axis=0)}")
         print(f"Std values: {np.std(self.labels, axis=0)}")
 
-    def _process_qm9(self, df):
-        """处理 QM9 数据集（多目标回归）"""
-        required_cols = ['smiles']
-        if not all(col in df.columns for col in required_cols):
-            raise ValueError("QM9 dataset must contain a 'smiles' column")
+    def _process_qm7(self, df):
+        """
+        处理 QM7 数据集
+        """
+        if 'smiles' not in df.columns:
+            raise ValueError("QM7 dataset must contain a 'smiles' column")
 
+        possible_targets = ['u0_atom', 'u0', 'target', 'eat']
+        target_col = next((c for c in possible_targets if c in df.columns), None)
+        
+        if target_col is None:
+            target_col = [c for c in df.columns if c != 'smiles'][-1]
+            print(f"Warning: Specific QM7 target column not found. Using '{target_col}' as target.")
         self.smiles_list = df['smiles'].values
-        label_cols = [col for col in df.columns if col not in ['mol_id', 'smiles']]
-        self.label_cols = label_cols
-        self.labels = df[label_cols].values.astype(float)
-        self.is_multi_label = True
+        self.labels = df[target_col].values.astype(float)
+        self.label_cols = [target_col]
+        self.is_multi_label = False
         self.task_type = 'regression'
 
- 
-        self.process_label = lambda idx: torch.FloatTensor(self.labels[idx]).unsqueeze(0) 
-
-        print("\nQM9 dataset statistics:")
-        print(f"Label columns: {label_cols}")
-        print(f"Min values: {np.min(self.labels, axis=0)}")
-        print(f"Max values: {np.max(self.labels, axis=0)}")
-        print(f"Mean values: {np.mean(self.labels, axis=0)}")
-        print(f"Std values: {np.std(self.labels, axis=0)}")
+        self.process_label = lambda idx: torch.FloatTensor([[float(self.labels[idx])]])
+        print(f"\nQM7 dataset statistics ({target_col}):")
+        print(f"Total samples: {len(self.labels)}")
+        print(f"Min: {np.min(self.labels):.4f}")
+        print(f"Max: {np.max(self.labels):.4f}")
+        print(f"Mean: {np.mean(self.labels):.4f}")
+        print(f"Std: {np.std(self.labels):.4f}")
 
     def _check_data_validity(self):
 
