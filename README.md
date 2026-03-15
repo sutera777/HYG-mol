@@ -46,7 +46,7 @@ pip install -r requirements.txt
 To run the model on the BBBP dataset:
 
 ```bash
-python -m src.main --dataset BBBP --task_type classification --model_type attention 
+python -m src.main --dataset Tox21 --task_type classification --model_type attention 
 ```
 
 ### Supported Datasets
